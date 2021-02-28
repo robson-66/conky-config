@@ -49,11 +49,11 @@ conky.text = [[
 ##########
 # SYSTEM #
 ##########
-${voffset -15}${image /home/robson/.conky/Logo.png -p 0,0 -s 38x38}${image /home/robson/.conky/Logo.png -p 260,0 -s 38x38}
-${color3}${font Roboto Black:size=21}${alignc}${time %H:%M:%S}
-${voffset -15}${font Roboto Black:size=14}${alignc}${time %A} ${time %d} ${time %B} ${time %Y}
-${color1}${voffset -12}${font Roboto Black:size=9}${scroll 44 2 ${execi 1200 whoami}@${nodename}-$sysname $kernel $machine}
-${voffset 0}${font Roboto Black:size=10}${color2}SYSTEM ${color}${font} Arch Linux Xfce                         ${execi 10000 awk -F'=' '/DISTRIB_RELEASE=/ {printf $2" "} /CODENAME/ {print $2}' /etc/lsb-release}
+${voffset -15}${image /home/robson/.conky/Logo.png -p 0,0 -s 35x35}${image /home/robson/.conky/Logo.png -p 260,0 -s 35x35}
+${voffset -8}${color3}${font Roboto Black:size=16}${alignc}${time %H:%M:%S}
+${voffset -13}${font Roboto Black:size=13}${alignc}${time %A} ${time %d} ${time %B} ${time %Y}
+${color1}${voffset -10}${font Roboto Black:size=9}${scroll 44 2 ${execi 1200 whoami}@${nodename}-$sysname $kernel $machine}
+${voffset -3}${font Roboto Black:size=10}${color2}SYSTEM ${color}${font} Arch Linux Xfce                         ${execi 10000 awk -F'=' '/DISTRIB_RELEASE=/ {printf $2" "} /CODENAME/ {print $2}' /etc/lsb-release}
 ${voffset -4}${font Play :Bold:size=11}${color}$sysname kernel: ${font}$kernel${alignr}$machine
 ${voffset -4}${font Play :Bold:size=11}${color}Czas działania: ${font}${alignr}$uptime
 ${voffset -4}${font Play :Bold:size=11}${color}Temperatura gpu: ${font}${alignr}$acpitemp${color0}°C
@@ -64,11 +64,10 @@ ${voffset -4}${font Play :Bold:size=11}${color}Ostatnia aktualizacja: ${font}${a
 # CPU #
 ##########
 ${voffset -3}${font Roboto Black:size=10}${color2}CPU${color}${font}   Intel(R) Core(TM) i3-2100 CPU@3.10GHz ${color0}  
-#Core 1 - ${execi 2 sensors | grep 'Core 1' | cut -c17-20}°C ${alignc 60}${cpubar cpu1}${color}
-#Core 2 - ${execi 2 sensors | grep 'Core 2' | cut -c17-20}°C ${alignc 60}${cpubar cpu2}${color}
-${alignc 30}${voffset -5}${cpugraph 1 20,148 0000ff 00ff00 -t}${alignr}${cpugraph 2 20,148 0000ff 00ff00 -t} 
-${color0}${alignc 50}${voffset -10}${cpubar cpu1 5,148}${alignr}${cpubar cpu2 5,148}
-${alignc 30}${voffset -6}${color}${font Play :Bold:size=11}Core 1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 2 ${font}${cpu cpu2}%
+${color0}${alignc 50}${voffset -3}${cpubar cpu1 8,148}${alignr}${cpubar cpu1 8,148}
+${alignc 30}${voffset -3}${color}${font Play :Bold:size=11}Core 1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 2 ${font}${cpu cpu2}%
+${color0}${alignc 50}${voffset -2}${cpubar cpu3 8,148}${alignr}${cpubar cpu3 8,148}
+${alignc 30}${voffset -2}${color}${font Play :Bold:size=11}Core 3 ${font}${cpu cpu3}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 4 ${font}${cpu cpu4}%
 ####################
 ${font Roboto Black:size=10}${color2}USAGE${font Roboto Black:size=10}${color2}${alignr 47}RAM${color2}${alignr 18}${font Roboto Black:size=10}CPU
 ${font :Bold:size=10}${color1}${top name 1}${voffset -3}${font}${alignr}${top cpu 1} %
@@ -86,7 +85,7 @@ ${voffset -16}${alignr}${voffset 2}${offset -60}${top mem 6} %
 ##########
 # MEMORY #
 ##########
-${voffset 0}${font Roboto Black:size=10}${color2}MEMORY ${font}${color}$memperc% ${color0}${membar 5}
+${voffset 0}${font Roboto Black:size=10}${color2}MEMORY ${font}${color}$memperc% ${color0}${membar 8}
 ${voffset -10}${color}$hr
 ${color}${font Play :Bold:size=11}${voffset -7}Used: ${font}$mem of $memmax${alignr}${font Play :Bold:size=11}${voffset -3}Free: ${font}${memeasyfree}${alignr}
 ${font Play :Bold:size=11}${voffset -2}Buffer: ${font}$buffers${alignr}${font Play :Bold:size=11}${voffset -4}Cache: ${font}$cached${alignr}
@@ -107,13 +106,15 @@ ${voffset -17}${alignr}
 # HDD #
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}DISC ${color}${font} sda: ${execi 3600 cat /sys/block/sda/device/model || echo "none"} ${if_match "${hddtemp /dev/sda}"<="40" }${color}$else${if_match "${hddtemp /dev/sda}"<="50" }${color orange}$else${color red}${font :Bold:size=10}UWAGA! $endif$endif${hddtemp /dev/sda}${color0}°C ${voffset 0}${alignr}${diskiograph /dev/sda 8,60 F57900 FCAF3E}
+#root
+${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type /}) ${font}${fs_used /} of ${fs_size /} ${color} ${fs_used_perc /}% ${color0}
 #home
-${color}${voffset -3}${font Play :Bold:size=11}Home used: (${fs_type /}) ${font}${fs_used /} of ${fs_size /} ${color} ${fs_used_perc /}% ${color0}
+${color}${voffset -3}${font Play :Bold:size=11}Home used: (${fs_type /home}) ${font}${fs_used /home} of ${fs_size /home} ${color} ${fs_used_perc /home}% ${color0}
 #boot
 ${color}${voffset -3}${font Play :Bold:size=11}Boot used: (${fs_type /boot/}) ${font}${fs_used /boot/} of ${fs_size /boot/} ${color}  ${fs_used_perc /boot/}% ${color0}
 $color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/sda2}${alignc}${voffset -4}${font Play :Bold:size=11}read: ${font}${diskio_read /dev/sda2}
 #swap
-${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${color}${alignr}$swapperc% ${color0}${swapbar 8,60}
+${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${color}${alignr}$swapperc% ${color0}${swapbar 8,55}
 ##########
 # NETWORK #
 ##########
@@ -147,5 +148,5 @@ ${voffset -14}${alignc -40}${color0}${upspeedgraph enp0s26u1u3 8,85  000000 aadd
 ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
 ${voffset -25}${color}$hr
-${color}${execi 1200 curl -s pl.wttr.in/Szczecin?0 | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
+${color}${execi 1200 curl -s pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
 ]];
