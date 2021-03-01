@@ -32,7 +32,7 @@ conky.config = {
 --- Text settings ---
     override_utf8_locale = true,
     use_xft = true,
-    font = 'Bold:size=9',
+    font = 'Bold:size= 9',
     xftalpha = 1,  
     text_buffer_size = 2048,
 
@@ -42,8 +42,7 @@ conky.config = {
     color1 = '#0998ED',
     color2 = '#C37D0E',
     color3 = '#0EB3C3',
-
-};
+}
 
 conky.text = [[
 ##########
@@ -64,9 +63,9 @@ ${voffset -4}${font Play :Bold:size=11}${color}Ostatnia aktualizacja: ${font}${a
 # CPU #
 ##########
 ${voffset -3}${font Roboto Black:size=10}${color2}CPU${color}${font}   Intel(R) Core(TM) i3-2100 CPU@3.10GHz ${color0}  
-${color0}${alignc 50}${voffset -3}${cpubar cpu1 8,148}${alignr}${cpubar cpu1 8,148}
+${color0}${alignc 50}${voffset -3}${cpubar cpu1 8,148}${alignr}${cpubar cpu2 8,148}
 ${alignc 30}${voffset -3}${color}${font Play :Bold:size=11}Core 1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 2 ${font}${cpu cpu2}%
-${color0}${alignc 50}${voffset -2}${cpubar cpu3 8,148}${alignr}${cpubar cpu3 8,148}
+${color0}${alignc 50}${voffset -2}${cpubar cpu3 8,148}${alignr}${cpubar cpu4 8,148}
 ${alignc 30}${voffset -2}${color}${font Play :Bold:size=11}Core 3 ${font}${cpu cpu3}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 4 ${font}${cpu cpu4}%
 ####################
 ${font Roboto Black:size=10}${color2}USAGE${font Roboto Black:size=10}${color2}${alignr 47}RAM${color2}${alignr 18}${font Roboto Black:size=10}CPU
@@ -149,4 +148,4 @@ ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
 ${voffset -25}${color}$hr
 ${color}${execi 1200 curl -s pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
-]];
+]]
