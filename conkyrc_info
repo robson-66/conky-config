@@ -67,7 +67,7 @@ ${color0}${alignc 50}${voffset -3}${cpubar cpu1 8,148}${alignr}${cpubar cpu2 8,1
 ${alignc 30}${voffset -3}${color}${font Play :Bold:size=11}Core 1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 2 ${font}${cpu cpu2}%
 ${color0}${alignc 50}${voffset -2}${cpubar cpu3 8,148}${alignr}${cpubar cpu4 8,148}
 ${alignc 30}${voffset -2}${color}${font Play :Bold:size=11}Core 3 ${font}${cpu cpu3}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 4 ${font}${cpu cpu4}%
-####################
+##########
 ${font Roboto Black:size=10}${color2}USAGE${font Roboto Black:size=10}${color2}${alignr 47}RAM${color2}${alignr 18}${font Roboto Black:size=10}CPU
 ${font :Bold:size=10}${color1}${top name 1}${voffset -3}${font}${alignr}${top cpu 1} %
 ${voffset -16}${alignr}${voffset 2}${offset -60}${top mem 1} %
@@ -85,10 +85,10 @@ ${voffset -16}${alignr}${voffset 2}${offset -60}${top mem 6} %
 # MEMORY #
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}MEMORY ${font}${color}$memperc% ${color0}${membar 8}
-${voffset -10}${color}$hr
+${voffset -10}${color}${hr}
 ${color}${font Play :Bold:size=11}${voffset -7}Used: ${font}$mem of $memmax${alignr}${font Play :Bold:size=11}${voffset -3}Free: ${font}${memeasyfree}${alignr}
 ${font Play :Bold:size=11}${voffset -2}Buffer: ${font}$buffers${alignr}${font Play :Bold:size=11}${voffset -4}Cache: ${font}$cached${alignr}
-${voffset -15}${color}${voffset 5}$hr
+${voffset -15}${color}${voffset 5}${hr}
 ${font :Bold:size=10}${color1}${top_mem name 1}${font}${alignr}${top_mem mem_res 1}
 ${voffset -17}${alignr}
 ${font :Bold:size=10}${top_mem name 2}${font}${alignr}${top_mem mem_res 2}
@@ -106,11 +106,11 @@ ${voffset -17}${alignr}
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}DISC ${color}${font} sda: ${execi 3600 cat /sys/block/sda/device/model || echo "none"} ${if_match "${hddtemp /dev/sda}"<="40" }${color}$else${if_match "${hddtemp /dev/sda}"<="50" }${color orange}$else${color red}${font :Bold:size=10}UWAGA! $endif$endif${hddtemp /dev/sda}${color0}°C ${voffset 0}${alignr}${diskiograph /dev/sda 8,60 F57900 FCAF3E}
 #root
-${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type /}) ${font}${fs_used /} of ${fs_size /} ${color} ${fs_used_perc /}% ${color0}
+${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type}) ${font}${fs_used} of ${fs_size} ${color} ${fs_used_perc}% ${color0}
 #home
 ${color}${voffset -3}${font Play :Bold:size=11}Home used: (${fs_type /home}) ${font}${fs_used /home} of ${fs_size /home} ${color} ${fs_used_perc /home}% ${color0}
 #boot
-${color}${voffset -3}${font Play :Bold:size=11}Boot used: (${fs_type /boot/}) ${font}${fs_used /boot/} of ${fs_size /boot/} ${color}  ${fs_used_perc /boot/}% ${color0}
+${color}${voffset -3}${font Play :Bold:size=11}Boot used: (${fs_type /boot}) ${font}${fs_used /boot} of ${fs_size /boot} ${color}  ${fs_used_perc /boot}% ${color0}
 $color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/sda2}${alignc}${voffset -4}${font Play :Bold:size=11}read: ${font}${diskio_read /dev/sda2}
 #swap
 ${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${color}${alignr}$swapperc% ${color0}${swapbar 8,55}
@@ -119,9 +119,9 @@ ${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${col
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}NETWORK ${execpi 4 echo "\${font}\${color} (ping: \${font Roboto Black:size=10}\${color #66aaff}$(ping -W 1 -c 1 192.168.8.1 -q | grep rtt | egrep [0-9]+\.[0-9]+ -o | head -n 2 | tail -n 1)\${font}\${color} ms"})
 ${voffset -4}${color1}${font Roboto Black:size=10}External IP ${font}${alignr}${execi 10600 curl -s http://damninter.net/}
-###########
+##########
 #Wykrywanie karty sieciowej
-${voffset 2}${color}Network connected $hr
+${voffset 2}${color}Network connected ${hr}
 ${if_existing /proc/net/route enp0s26u1u3}
 ${voffset -28}${font}${alignr}
 ${color}↓Pobrane: ${downspeedf enp0s26u1u3} kB/s ${alignr}${totaldown enp0s26u1u3}
@@ -146,6 +146,6 @@ ${color}↑Wysłane: ${upspeedf enp0s26u1u3} kB/s ${alignr}${totalup enp0s26u1u3
 ${voffset -14}${alignc -40}${color0}${upspeedgraph enp0s26u1u3 8,85  000000 aaddff}
 ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
-${voffset -25}${color}$hr
+${voffset -25}${color}${hr}
 ${color}${execi 1200 curl -s pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
 ]]
