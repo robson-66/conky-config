@@ -49,7 +49,7 @@ conky.text = [[
 # SYSTEM #
 ##########
 ${voffset -15}${image /home/robson/.conky/Logo.png -p 0,0 -s 35x35}${image /home/robson/.conky/Logo.png -p 260,0 -s 35x35}
-${voffset -8}${color3}${font Roboto Black:size=16}${alignc}${time %H:%M:%S}
+${voffset -8}${color3}${font Roboto Black:size=17}${alignc}${time %H:%M:%S}
 ${voffset -13}${font Roboto Black:size=13}${alignc}${time %A} ${time %d} ${time %B} ${time %Y}
 ${color1}${voffset -10}${font Roboto Black:size=9}${scroll 44 2 ${execi 1200 whoami}@${nodename}-$sysname $kernel $machine}
 ${voffset -3}${font Roboto Black:size=10}${color2}SYSTEM ${color}${font} Arch Linux Xfce                         ${execi 10000 awk -F'=' '/DISTRIB_RELEASE=/ {printf $2" "} /CODENAME/ {print $2}' /etc/lsb-release}
@@ -64,9 +64,9 @@ ${voffset -4}${font Play :Bold:size=11}${color}Ostatnia aktualizacja: ${font}${a
 ##########
 ${voffset -3}${font Roboto Black:size=10}${color2}CPU${color}${font}   Intel(R) Core(TM) i3-2100 CPU@3.10GHz ${color0}  
 ${color0}${alignc 50}${voffset -3}${cpubar cpu1 8,148}${alignr}${cpubar cpu2 8,148}
-${alignc 30}${voffset -3}${color}${font Play :Bold:size=11}Core 1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 2 ${font}${cpu cpu2}%
-${color0}${alignc 50}${voffset -2}${cpubar cpu3 8,148}${alignr}${cpubar cpu4 8,148}
-${alignc 30}${voffset -2}${color}${font Play :Bold:size=11}Core 3 ${font}${cpu cpu3}% ${alignr 30}${voffset -3}${font Play :Bold:size=11}Core 4 ${font}${cpu cpu4}%
+${alignc 30}${voffset -3}${color}${font Roboto Black:size=10}Core1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Roboto Black:size=10}Core2 ${font}${cpu cpu2}%
+${color0}${alignc 50}${voffset -3}${cpubar cpu3 8,148}${alignr}${cpubar cpu4 8,148}
+${alignc 30}${voffset -3}${color}${font Roboto Black:size=10}Core3 ${font}${cpu cpu3}% ${alignr 30}${voffset -3}${font Roboto Black:size=10}Core4 ${font}${cpu cpu4}%
 ##########
 ${font Roboto Black:size=10}${color2}USAGE${font Roboto Black:size=10}${color2}${alignr 47}RAM${color2}${alignr 18}${font Roboto Black:size=10}CPU
 ${font :Bold:size=10}${color1}${top name 1}${voffset -3}${font}${alignr}${top cpu 1} %
@@ -111,9 +111,9 @@ ${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type}) ${font}${
 ${color}${voffset -3}${font Play :Bold:size=11}Home used: (${fs_type /home}) ${font}${fs_used /home} of ${fs_size /home} ${color} ${fs_used_perc /home}% ${color0}
 #boot
 ${color}${voffset -3}${font Play :Bold:size=11}Boot used: (${fs_type /boot}) ${font}${fs_used /boot} of ${fs_size /boot} ${color}  ${fs_used_perc /boot}% ${color0}
-$color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/sda2}${alignc}${voffset -4}${font Play :Bold:size=11}read: ${font}${diskio_read /dev/sda2}
 #swap
-${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${color}${alignr}$swapperc% ${color0}${swapbar 8,55}
+${color}${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${color}${alignr}$swapperc% ${color0}${swapbar 8,55}
+$color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/sda2}${alignc}${voffset -4}${font Play :Bold:size=11}read: ${font}${diskio_read /dev/sda2}
 ##########
 # NETWORK #
 ##########
