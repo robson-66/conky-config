@@ -147,5 +147,5 @@ ${voffset -14}${alignc -40}${color0}${upspeedgraph enp0s26u1u3 8,85  000000 aadd
 ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
 ${voffset -25}${color}${hr}
-${color}${execi 1200 curl -s pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
+${color}${execi 1300 curl -s pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
 ]]
