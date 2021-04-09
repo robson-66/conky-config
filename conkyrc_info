@@ -42,6 +42,7 @@ conky.config = {
     color1 = '#0998ED',
     color2 = '#C37D0E',
     color3 = '#0EB3C3',
+    color4 = '#FCE94F',
 }
 
 conky.text = [[
@@ -56,7 +57,7 @@ ${voffset -3}${font Roboto Black:size=10}${color2}SYSTEM ${color}${font} Arch Li
 ${voffset -4}${font Play :Bold:size=11}${color}$sysname kernel: ${font}$kernel${alignr}$machine
 ${voffset -4}${font Play :Bold:size=11}${color}Czas działania: ${font}${alignr}$uptime
 ${voffset -4}${font Play :Bold:size=11}${color}Temperatura gpu: ${font}${alignr}$acpitemp${color0}°C
-${voffset -4}${font Play :Bold:size=11}${color}Paczki do aktualizacji: ${font}${alignr 8}${color2}${execi 80 checkupdates | wc -l}${color}
+${voffset -4}${font Play :Bold:size=11}${color}Paczki do aktualizacji: ${font}${alignr 8}${color4}${execi 80 checkupdates | wc -l}${color}
 ${voffset -4}${font Play :Bold:size=11}${color}Paczki zainstalowane: ${font}${alignr}${execi 10 pacman -Q | wc -l}
 ${voffset -4}${font Play :Bold:size=11}${color}Ostatnia aktualizacja: ${font}${alignr}${voffset 1}${execi 10 grep "starting full system upgrade" /var/log/pacman.log | tail -n1| cut --bytes=2-17}
 ##########
