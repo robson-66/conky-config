@@ -49,7 +49,7 @@ conky.text = [[
 ##########
 # SYSTEM #
 ##########
-${voffset -15}${image /home/robson/.conky/Logo.png -p 0,0 -s 35x35}${image /home/robson/.conky/Logo.png -p 260,0 -s 35x35}
+${voffset -15}${image /home/robson/.conky/Logo.png -p 0,0 -s 35x35}${image /home/robson/.conky/Logo.png -p 262,0 -s 35x35}
 ${voffset -8}${color3}${font Roboto Black:size=17}${alignc}${time %H:%M:%S}
 ${voffset -13}${font Roboto Black:size=13}${alignc}${time %A} ${time %d} ${time %B} ${time %Y}
 ${color1}${voffset -10}${font Roboto Black:size=9}${scroll 44 2 ${execi 1200 whoami}@${nodename}-$sysname $kernel $machine}
@@ -107,7 +107,7 @@ ${voffset -17}${alignr}
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}DISC ${color}${font} sda: ${execi 3600 cat /sys/block/sda/device/model || echo "none"} ${if_match "${hddtemp /dev/sda}"<="40" }${color}$else${if_match "${hddtemp /dev/sda}"<="50" }${color orange}$else${color red}${font :Bold:size=10}UWAGA! $endif$endif${hddtemp /dev/sda}${color0}°C ${voffset 0}${alignr}${diskiograph /dev/sda 8,60 F57900 FCAF3E}
 #root
-${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type}) ${font}${fs_used} of ${fs_size} ${color} ${fs_used_perc}% ${color0}
+${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type /}) ${font}${fs_used /} of ${fs_size /} ${color} ${fs_used_perc /}% ${color0}
 #home
 ${color}${voffset -3}${font Play :Bold:size=11}Home used: (${fs_type /home}) ${font}${fs_used /home} of ${fs_size /home} ${color} ${fs_used_perc /home}% ${color0}
 #boot
@@ -119,7 +119,7 @@ $color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/s
 # NETWORK #
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}NETWORK ${execpi 4 echo "\${font}\${color} (ping: \${font Roboto Black:size=10}\${color #66aaff}$(ping -W 1 -c 1 192.168.8.1 -q | grep rtt | egrep [0-9]+\.[0-9]+ -o | head -n 2 | tail -n 1)\${font}\${color} ms"})
-${voffset -4}${color1}${font Roboto Black:size=10}External IP ${font}${alignr}${execi 10600 curl -s http://damninter.net/}
+${voffset -4}${color1}${font Roboto Black:size=10}External IP ${font}${alignr}${execi 10600 curl -s http://curlmyip.net/}
 ##########
 #Wykrywanie karty sieciowej
 ${voffset 2}${color}Network connected ${hr}
