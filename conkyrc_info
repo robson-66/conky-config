@@ -27,7 +27,7 @@ conky.config = {
     draw_graph_borders = true,
     border_width = 0,
     border_inner_margin = 0,
-    border_outer_margin = 4,
+    border_outer_margin = 2,
 
 --- Text settings ---
     override_utf8_locale = true,
@@ -50,7 +50,7 @@ conky.text = [[
 # SYSTEM #
 ##########
 ${voffset -15}${image /home/robson/.conky/Logo.png -p 0,0 -s 35x35}${image /home/robson/.conky/Logo.png -p 262,0 -s 35x35}
-${voffset -8}${color3}${font Roboto Black:size=17}${alignc}${time %H:%M:%S}
+${voffset -7}${color3}${font Roboto Black:size=17}${alignc}${time %H:%M:%S}
 ${voffset -13}${font Roboto Black:size=13}${alignc}${time %A} ${time %d} ${time %B} ${time %Y}
 ${color1}${voffset -10}${font Roboto Black:size=9}${scroll 44 2 ${execi 1200 whoami}@${nodename}-$sysname $kernel $machine}
 ${voffset -3}${font Roboto Black:size=10}${color2}SYSTEM ${color}${font} Arch Linux Xfce                         ${execi 10000 awk -F'=' '/DISTRIB_RELEASE=/ {printf $2" "} /CODENAME/ {print $2}' /etc/lsb-release}
@@ -108,45 +108,45 @@ ${voffset -17}${alignr}
 ${voffset 0}${font Roboto Black:size=10}${color2}DISC ${color}${font} sda: ${execi 3600 cat /sys/block/sda/device/model || echo "none"} ${if_match "${hddtemp /dev/sda}"<="40" }${color}$else${if_match "${hddtemp /dev/sda}"<="50" }${color orange}$else${color red}${font :Bold:size=10}UWAGA! $endif$endif${hddtemp /dev/sda}${color0}°C ${voffset 0}${alignr}${diskiograph /dev/sda 8,60 F57900 FCAF3E}
 #root
 ${color}${voffset -3}${font Play :Bold:size=11}Root used: (${fs_type /}) ${font}${fs_used /} of ${fs_size /} ${color} ${fs_used_perc /}% ${color0}
-#home
+# home
 ${color}${voffset -3}${font Play :Bold:size=11}Home used: (${fs_type /home}) ${font}${fs_used /home} of ${fs_size /home} ${color} ${fs_used_perc /home}% ${color0}
-#boot
+# boot
 ${color}${voffset -3}${font Play :Bold:size=11}Boot used: (${fs_type /boot}) ${font}${fs_used /boot} of ${fs_size /boot} ${color}  ${fs_used_perc /boot}% ${color0}
-#swap
+# swap
 ${color}${voffset -3}${font Play :Bold:size=11}Swap used: ${font}$swap of $swapmax ${color}${alignr}$swapperc% ${color0}${swapbar 8,55}
 $color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/sda2}${alignc}${voffset -4}${font Play :Bold:size=11}read: ${font}${diskio_read /dev/sda2}
 ##########
 # NETWORK #
 ##########
-${voffset 0}${font Roboto Black:size=10}${color2}NETWORK ${execpi 4 echo "\${font}\${color} (ping: \${font Roboto Black:size=10}\${color #66aaff}$(ping -W 1 -c 1 192.168.8.1 -q | grep rtt | egrep [0-9]+\.[0-9]+ -o | head -n 2 | tail -n 1)\${font}\${color} ms"})
+${voffset 0}${font Roboto Black:size=10}${color2}NETWORK ${execpi 4 echo "\${font}\${color} (ping: \${font Roboto Black:size=10}\${color #66aaff}$(ping -W 1 -c 1 192.168.1.1 -q | grep rtt | egrep [0-9]+\.[0-9]+ -o | head -n 2 | tail -n 1)\${font}\${color} ms"})
 ${voffset -4}${color1}${font Roboto Black:size=10}External IP ${font}${alignr}${execi 10600 curl -s http://curlmyip.net/}
 ##########
 #Wykrywanie karty sieciowej
 ${voffset 2}${color}Network connected ${hr}
-${if_existing /proc/net/route enp0s26u1u3}
+${if_existing /proc/net/route eno1}
 ${voffset -28}${font}${alignr}
-${color}↓Pobrane: ${downspeedf enp0s26u1u3} kB/s ${alignr}${totaldown enp0s26u1u3}
-${voffset -14}${alignc -40}${color0}${downspeedgraph enp0s26u1u3 8,85 000000 66aaff}
-${color}↑Wysłane: ${upspeedf enp0s26u1u3} kB/s ${alignr}${totalup enp0s26u1u3}
-${voffset -14}${alignc -40}${color0}${upspeedgraph enp0s26u1u3 8,85 000000 66aaff}
+${color}↓Pobrane: ${downspeedf eno1} kB/s ${alignr}${totaldown eno1}
+${voffset -14}${alignc -40}${color0}${downspeedgraph eno1 8,85 000000 66aaff}
+${color}↑Wysłane: ${upspeedf eno1} kB/s ${alignr}${totalup eno1}
+${voffset -14}${alignc -40}${color0}${upspeedgraph eno1 8,85 000000 66aaff}
 #
-${else}${if_existing /proc/net/route enp0s26u1u3}
-#
-${voffset -28}${font}${alignr}
-${color}↓Pobrane: ${downspeedf enp0s26u1u3} kB/s ${alignr}${totaldown enp0s26u1u3}
-${voffset -14}${alignc -40}${color0}${downspeedgraph enp0s26u1u3 8,85  000000 66aaff}
-${color}↑Wysłane: ${upspeedf enp0s26u1u3} kB/s ${alignr}${totalup enp0s26u1u3}
-${voffset -14}${alignc -40}${color0}${upspeedgraph enp0s26u1u3 8,85  000000 aaddff}
-#
-${else}${if_existing /proc/net/route enp0s26u1u3}
+${else}${if_existing /proc/net/route eno1}
 #
 ${voffset -28}${font}${alignr}
-${color}↓Pobrane: ${downspeedf enp0s26u1u3} kB/s ${alignr}${totaldown enp0s26u1u3}
-${voffset -14}${alignc -40}${color0}${downspeedgraph enp0s26u1u3 8,85  000000 66aaff}
-${color}↑Wysłane: ${upspeedf enp0s26u1u3} kB/s ${alignr}${totalup enp0s26u1u3}
-${voffset -14}${alignc -40}${color0}${upspeedgraph enp0s26u1u3 8,85  000000 aaddff}
+${color}↓Pobrane: ${downspeedf eno1} kB/s ${alignr}${totaldown eno1}
+${voffset -14}${alignc -40}${color0}${downspeedgraph eno1 8,85  000000 66aaff}
+${color}↑Wysłane: ${upspeedf eno1} kB/s ${alignr}${totalup eno1}
+${voffset -14}${alignc -40}${color0}${upspeedgraph eno1 8,85  000000 aaddff}
+#
+${else}${if_existing /proc/net/route eno1}
+#
+${voffset -28}${font}${alignr}
+${color}↓Pobrane: ${downspeedf eno1} kB/s ${alignr}${totaldown eno1}
+${voffset -14}${alignc -40}${color0}${downspeedgraph eno1 8,85  000000 66aaff}
+${color}↑Wysłane: ${upspeedf eno1} kB/s ${alignr}${totalup eno1}
+${voffset -14}${alignc -40}${color0}${upspeedgraph eno1 8,85  000000 aaddff}
 ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
 ${voffset -25}${color}${hr}
-${color}${execi 1200 curl -s pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
+${color}${execi 1200 curl -s https://pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
 ]]
