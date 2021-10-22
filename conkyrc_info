@@ -148,5 +148,5 @@ ${voffset -14}${alignc -40}${color0}${upspeedgraph eno1 8,85  000000 aaddff}
 ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
 ${voffset -25}${color}${hr}
-${color}${execi 1200 curl -s https://pl.wttr.in/Szczecin | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
+${color}${execi 1200 curl -s wttr.in/Szczecin?lang=pl | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
 ]]
