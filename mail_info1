@@ -17,7 +17,7 @@ conky.config = {
     maximum_width = 300,
     alignment = 'top_right',
     gap_x = 0,
-    gap_y = 680,
+    gap_y = 669,
 
 --- Graphics settings ---
     draw_shades = true,
@@ -39,6 +39,7 @@ conky.config = {
     color1 = '#0998ED',
 }
 conky.text = [[
-${voffset 12}${image /home/robson/.conky/mail.png -p 0,0 -s 35x35}
-${voffset 0}${font Roboto Black:size=9}${color1}Linux.pl: ${font Roboto Black:size=9}${color1}${execi 60 /home/robson/.conky/imap.pl}
+${voffset -10}${image /home/robson/.conky/mail.png -p 0,0 -s 35x35}
+${voffset 20}${font Roboto Black:size=9}${color1}Gmail: ${font Roboto Black:size=9}${color1}${execi 60 /home/robson/.conky/imap1.pl}
+${voffset -4}${font Roboto Black:size=9}${color1}Linux.pl: ${font Roboto Black:size=9}${color1}${execi 60 /home/robson/.conky/imap.pl}
 ]];

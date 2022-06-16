@@ -11,7 +11,7 @@ my $username = 'your_mail';
 my $password = 'password'; 
 
 my $socket = IO::Socket::SSL->new(
-  PeerAddr => 'imap.gmail.com',
+  PeerAddr => 'mail.linux.pl',
   PeerPort => 993
  )
  or die "socket(): $@";
