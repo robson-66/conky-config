@@ -3,8 +3,8 @@ conky.config = {
     update_interval = 1,	
     total_run_times = 0,	
     background = false,
-    cpu_avg_samples = 2,
-    net_avg_samples = 2,
+    cpu_avg_samples = 4,
+    net_avg_samples = 4,
     double_buffer = true,
     
 --- Window specifications ---
@@ -17,7 +17,7 @@ conky.config = {
     maximum_width = 300,
     alignment = 'top_right',
     gap_x = 0,
-    gap_y = 669,
+    gap_y = 667,
 
 --- Graphics settings ---
     draw_shades = true,

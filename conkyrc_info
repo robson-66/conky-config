@@ -3,8 +3,8 @@ conky.config = {
     update_interval = 1,	
     total_run_times = 0,	
     background = false,
-    cpu_avg_samples = 2,
-    net_avg_samples = 2,
+    cpu_avg_samples = 4,
+    net_avg_samples = 4,
     double_buffer = true,
     
 --- Window specifications ---
@@ -60,7 +60,7 @@ ${voffset -4}${font Play :Bold:size=11}${color}Ostatnia aktualizacja: ${font}${a
 ##########
 # CPU #
 ##########
-${voffset -3}${font Roboto Black:size=10}${color2}CPU${color}${font}   Intel(R) Core(TM) i5-4590 CPU@3.30GHz ${color0}  
+${voffset -3}${font Roboto Black:size=10}${color2}CPU${color}${font}   Intel(R) Core(TM) i5-4590 CPU@3.70GHz ${color0}  
 ${color0}${alignc 50}${voffset -3}${cpubar cpu1 8,148}${alignr}${cpubar cpu2 8,148}
 ${alignc 30}${voffset -3}${color}${font Roboto Black:size=10}Core1 ${font}${cpu cpu1}% ${alignr 30}${voffset -3}${font Roboto Black:size=10}Core2 ${font}${cpu cpu2}%
 ${color0}${alignc 50}${voffset -3}${cpubar cpu3 8,148}${alignr}${cpubar cpu4 8,148}
