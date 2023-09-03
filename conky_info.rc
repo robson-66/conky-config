@@ -51,7 +51,7 @@ ${voffset -7}${color3}${font Roboto Black:size=17}${alignc}${time %H:%M:%S}
 ${voffset -13}${font Roboto Black:size=13}${alignc}${time %A} ${time %d} ${time %B} ${time %Y}
 ${color1}${voffset -10}${font Roboto Black:size=9}${scroll 44 2 ${execi 1200 whoami}@${nodename}-$sysname $kernel $machine}
 ${voffset -3}${font Roboto Black:size=10}${color2}SYSTEM ${color}${font} Arch Linux Xfce                      ${execi 10000 awk -F'=' '/DISTRIB_RELEASE=/ {printf $2" "} /CODENAME/ {print $2}' /etc/lsb-release}
-${voffset -4}${font Play :Bold:size=11}${color}$sysname kernel: ${font}$kernel${alignr}$machine
+${voffset -4}${font Play :Bold:size=11}${color}$sysname kernel: ${font}$kernel${alignr} $machine}
 ${voffset -4}${font Play :Bold:size=11}${color}Czas działania: ${font}${alignr}$uptime
 ${voffset -4}${font Play :Bold:size=11}${color}Temperatura gpu: ${font}${alignr}${exec sensors | grep 'Core 0' | awk '{print $3}' | cut -c2-3}${color0}°C
 ${voffset -4}${font Play :Bold:size=11}${color}Paczki do aktualizacji: ${font}${alignr 8}${color4}${execi 60 checkupdates | wc -l}${color}
@@ -116,7 +116,7 @@ $color${voffset -3}${font Play :Bold:size=11}write: ${font}${diskio_write /dev/s
 # NETWORK #
 ##########
 ${voffset 0}${font Roboto Black:size=10}${color2}NETWORK ${execpi 4 echo "\${font}\${color} (ping: \${font Roboto Black:size=10}\${color #66aaff}$(ping -W 1 -c 1 192.168.1.1 -q | grep rtt | egrep [0-9]+\.[0-9]+ -o | head -n 2 | tail -n 1)\${font}\${color} ms"})
-${voffset -4}${color1}${font Roboto Black:size=10}External IP ${font}${alignr}${execi 10600 curl -s http://curlmyip.net/}
+${voffset -4}${color1}${font Roboto Black:size=10}External IP ${font}${alignr}${execi 10600 curl -s -m 2 http://icanhazip.com/}
 ##########
 #Wykrywanie karty sieciowej
 ${voffset 2}${color}Network connected ${hr}
@@ -145,5 +145,5 @@ ${voffset -14}${alignc -40}${color0}${upspeedgraph eno1 8,85  000000 aaddff}
 ${endif}${endif}${endif}
 #Koniec wykrywania karty sieciowej
 ${voffset -25}${color}${hr}
-${color}${execi 1200 curl -s wttr.in/Szczecin?lang=pl | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
+${color}${execi 300 curl -s -m 2 wttr.in/Szczecin?lang=pl | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'}
 ]];
